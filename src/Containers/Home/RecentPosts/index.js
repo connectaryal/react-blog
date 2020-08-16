@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import Card from '../../../Components/UI/Card'
 import './style.css';
-import blogPost from '../../../data/blog.json';
 import {NavLink} from "react-router-dom";
+import db from "../../../init/Firebase";
 
 /**
 * @author
@@ -14,20 +14,22 @@ const RecentPost = (props) => {
   const [ posts, setPosts ] = useState([]);
 
   useEffect(() => {
-    const posts = blogPost.data
-    setPosts(posts);
-  }, [posts]);
+    db.collection('blog')
+    .onSnapshot(snapshot => {
+      setPosts(snapshot.docs.map(doc => doc.data()))
+    })
+  }, []);
 
   return(
     <div style={props.style}>
       {
         posts.map(post => {
           return (
-            <Card style={{ marginBottom: '20px' }}>
+            <Card>
               <div className="postImageWrapper">
                   <img src={require('../../../assets/blogPostImages/' + post.blogImage )} alt=""/>
               </div>
-              <div style={{textAlign: 'center'}}>
+              <div style={{textAlign: 'center'}} key={post.id}>
                 <span>{post.blogCategory}</span>
                 <h2>{post.blogTitle}</h2>
                 <span>posted on {post.postedOn} by {post.author} on {post.blogCategory}</span>

@@ -1,7 +1,6 @@
 import React from "react";
 import './style.css';
 import Card from "../../Components/UI/Card";
-import SideBar from "../../Components/SideBar";
 import RecentPost from "./RecentPosts";
 import blogdata from '../../data/blog.json';
 import Layout from "../../Components/Layout";
