@@ -4,6 +4,7 @@ import Card from '../../Components/UI/Card';
 import BlogPost from '../../Components/BlogPost';
 import SideBar from '../../Components/SideBar';
 import blogPost from '../../data/blog.json';
+import Layout from '../../Components/Layout';
 
 /**
 * @author
@@ -13,10 +14,9 @@ import blogPost from '../../data/blog.json';
 const Post = (props) => {
 
   return(
-    <section className="container">
+    <Layout>
       <BlogPost {...props}/>
-      <SideBar />
-    </section>
+    </Layout>
    )
 
  }

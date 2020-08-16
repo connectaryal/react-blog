@@ -20,14 +20,14 @@ const BlogPost = (props) => {
       "blogImage": "",
       "blogText": "",
   });
-  const [postId, setPostId ] = useState('');
+  const [slug, setSlug ] = useState('');
 
   useEffect(() => {
-    const postId = props.match.params.postId;
-    const post = blogPost.data.find(post => post.id == postId)
+    const slug = props.match.params.slug;
+    const post = blogPost.data.find(post => post.slug == slug)
     setPost(post);
-    setPostId(post);
-  }, [post, props.match.params.postId]);
+    setSlug(slug);
+  }, [post, props.match.params.slug]);
 
   if( post.blogImage == "" ) return null;
 
