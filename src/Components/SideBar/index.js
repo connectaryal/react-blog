@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './style.css';
 import Card from '../UI/Card';
-import blogPost from '../../data/blog.json';
 import {NavLink} from "react-router-dom";
+import db from "../../init/Firebase";
+
 /**
 * @author
 * @function SideBar
@@ -12,9 +13,11 @@ const SideBar = (props) => {
   const [ posts, setPosts ] = useState([]);
 
   useEffect(() => {
-    const posts = blogPost.data
-    setPosts(posts);
-  }, [posts]);
+    db.collection('blog')
+    .onSnapshot(snapshot => {
+      setPosts(snapshot.docs.map(doc => doc.data()))
+    })
+  }, []);
 
   return(
     <div className="sidebarContainer" style={{ width: props.width }}>

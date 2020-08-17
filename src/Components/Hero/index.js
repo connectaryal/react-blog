@@ -11,7 +11,6 @@ const Hero = (props) => {
         <div style={{padding:'50px 0'}}>
           <Logo />
         </div>
-        <NavBar />
       </Card>
     </div>
   )
